@@ -1,0 +1,10 @@
+contexts:
+  tests.test_sample_process:
+    title: Sample Process
+    location: Tests/Sample Process
+    presentation: plantuml
+    components:
+      - repository.save
+      - service.process_order
+    uml:
+      file: traces/test_sample.puml

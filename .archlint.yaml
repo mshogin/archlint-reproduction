@@ -1,0 +1,4 @@
+tracerlint:
+  exclude_packages:
+    - pkg/tracer
+    - internal/linter

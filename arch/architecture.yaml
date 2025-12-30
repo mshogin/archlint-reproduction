@@ -1,0 +1,338 @@
+components:
+  - id: github.com/mshogin/archlint/cmd/archlint
+    title: main
+    entity: package
+  - id: github.com/mshogin/archlint/internal/analyzer
+    title: analyzer
+    entity: package
+  - id: github.com/mshogin/archlint/internal/cli
+    title: cli
+    entity: package
+  - id: github.com/mshogin/archlint/internal/model
+    title: model
+    entity: package
+  - id: github.com/mshogin/archlint/pkg/tracer
+    title: tracer
+    entity: package
+  - id: github.com/mshogin/archlint/internal/analyzer.TypeInfo
+    title: TypeInfo
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/analyzer.FieldInfo
+    title: FieldInfo
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/analyzer.MethodInfo
+    title: MethodInfo
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/analyzer.CallInfo
+    title: CallInfo
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    title: GoAnalyzer
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/model.Graph
+    title: Graph
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/model.Edge
+    title: Edge
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/analyzer.PackageInfo
+    title: PackageInfo
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/analyzer.FunctionInfo
+    title: FunctionInfo
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/model.Node
+    title: Node
+    entity: struct
+  - id: github.com/mshogin/archlint/internal/cli.printStats
+    title: printStats
+    entity: function
+  - id: github.com/mshogin/archlint/pkg/tracer.Enter
+    title: Enter
+    entity: function
+  - id: github.com/mshogin/archlint/pkg/tracer.ExitError
+    title: ExitError
+    entity: function
+  - id: github.com/mshogin/archlint/cmd/archlint.main
+    title: main
+    entity: function
+  - id: github.com/mshogin/archlint/internal/analyzer.NewGoAnalyzer
+    title: NewGoAnalyzer
+    entity: function
+  - id: github.com/mshogin/archlint/internal/cli.init
+    title: init
+    entity: function
+  - id: github.com/mshogin/archlint/internal/cli.runCollect
+    title: runCollect
+    entity: function
+  - id: github.com/mshogin/archlint/internal/cli.saveGraph
+    title: saveGraph
+    entity: function
+  - id: github.com/mshogin/archlint/internal/cli.Execute
+    title: Execute
+    entity: function
+  - id: github.com/mshogin/archlint/pkg/tracer.ExitSuccess
+    title: ExitSuccess
+    entity: function
+  - id: github.com/mshogin/archlint/internal/cli.analyzeCode
+    title: analyzeCode
+    entity: function
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.collectCalls
+    title: collectCalls
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.isBuiltin
+    title: isBuiltin
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildFunctionNodes
+    title: buildFunctionNodes
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildMethodNodes
+    title: buildMethodNodes
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.Analyze
+    title: Analyze
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.parseFile
+    title: parseFile
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.parseStructField
+    title: parseStructField
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.parseFuncDecl
+    title: parseFuncDecl
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildGraph
+    title: buildGraph
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildPackageNodes
+    title: buildPackageNodes
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.resolveCallTarget
+    title: resolveCallTarget
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildTypeDependencyEdges
+    title: buildTypeDependencyEdges
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.resolveTypeName
+    title: resolveTypeName
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildImportEdges
+    title: buildImportEdges
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildCallEdges
+    title: buildCallEdges
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.walkFunc
+    title: walkFunc
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.parseGenDecl
+    title: parseGenDecl
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.getReceiverName
+    title: getReceiverName
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.isStdLib
+    title: isStdLib
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildTypeNodes
+    title: buildTypeNodes
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildContainsEdges
+    title: buildContainsEdges
+    entity: method
+  - id: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.detectModulePath
+    title: detectModulePath
+    entity: method
+links:
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/internal/analyzer
+    type: import
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/internal/model
+    type: import
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/pkg/tracer
+    type: import
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/pkg/tracer
+    type: import
+  - from: github.com/mshogin/archlint/cmd/archlint
+    to: github.com/mshogin/archlint/internal/cli
+    type: import
+  - from: github.com/mshogin/archlint/cmd/archlint
+    to: github.com/mshogin/archlint/pkg/tracer
+    type: import
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/internal/model
+    type: import
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/pkg/tracer
+    type: import
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/internal/analyzer.PackageInfo
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/internal/analyzer.FunctionInfo
+    type: contains
+  - from: github.com/mshogin/archlint/internal/model
+    to: github.com/mshogin/archlint/internal/model.Node
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/internal/analyzer.TypeInfo
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/internal/analyzer.FieldInfo
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/internal/analyzer.MethodInfo
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/internal/analyzer.CallInfo
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    type: contains
+  - from: github.com/mshogin/archlint/internal/model
+    to: github.com/mshogin/archlint/internal/model.Graph
+    type: contains
+  - from: github.com/mshogin/archlint/internal/model
+    to: github.com/mshogin/archlint/internal/model.Edge
+    type: contains
+  - from: github.com/mshogin/archlint/pkg/tracer
+    to: github.com/mshogin/archlint/pkg/tracer.ExitSuccess
+    type: contains
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/internal/cli.analyzeCode
+    type: contains
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/internal/cli.printStats
+    type: contains
+  - from: github.com/mshogin/archlint/pkg/tracer
+    to: github.com/mshogin/archlint/pkg/tracer.Enter
+    type: contains
+  - from: github.com/mshogin/archlint/pkg/tracer
+    to: github.com/mshogin/archlint/pkg/tracer.ExitError
+    type: contains
+  - from: github.com/mshogin/archlint/cmd/archlint
+    to: github.com/mshogin/archlint/cmd/archlint.main
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer
+    to: github.com/mshogin/archlint/internal/analyzer.NewGoAnalyzer
+    type: contains
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/internal/cli.init
+    type: contains
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/internal/cli.runCollect
+    type: contains
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/internal/cli.saveGraph
+    type: contains
+  - from: github.com/mshogin/archlint/internal/cli
+    to: github.com/mshogin/archlint/internal/cli.Execute
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildCallEdges
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.walkFunc
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.parseGenDecl
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.getReceiverName
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.isStdLib
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildTypeNodes
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildContainsEdges
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.detectModulePath
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.collectCalls
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.isBuiltin
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildFunctionNodes
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildMethodNodes
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.Analyze
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.parseFile
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.parseStructField
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.parseFuncDecl
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildGraph
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildPackageNodes
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.resolveCallTarget
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildTypeDependencyEdges
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.resolveTypeName
+    type: contains
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer.buildImportEdges
+    type: contains
+  - from: github.com/mshogin/archlint/internal/cli.runCollect
+    to: github.com/mshogin/archlint/internal/cli.analyzeCode
+    method: analyzeCode
+    type: calls
+  - from: github.com/mshogin/archlint/internal/cli.runCollect
+    to: github.com/mshogin/archlint/internal/cli.printStats
+    method: printStats
+    type: calls
+  - from: github.com/mshogin/archlint/internal/cli.runCollect
+    to: github.com/mshogin/archlint/internal/cli.saveGraph
+    method: saveGraph
+    type: calls
+  - from: github.com/mshogin/archlint/internal/analyzer.MethodInfo
+    to: github.com/mshogin/archlint/internal/analyzer.CallInfo
+    type: uses
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.PackageInfo
+    type: uses
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.TypeInfo
+    type: uses
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.FunctionInfo
+    type: uses
+  - from: github.com/mshogin/archlint/internal/analyzer.GoAnalyzer
+    to: github.com/mshogin/archlint/internal/analyzer.MethodInfo
+    type: uses
+  - from: github.com/mshogin/archlint/internal/model.Graph
+    to: github.com/mshogin/archlint/internal/model.Node
+    type: uses
+  - from: github.com/mshogin/archlint/internal/model.Graph
+    to: github.com/mshogin/archlint/internal/model.Edge
+    type: uses
+  - from: github.com/mshogin/archlint/internal/analyzer.FunctionInfo
+    to: github.com/mshogin/archlint/internal/analyzer.CallInfo
+    type: uses
+  - from: github.com/mshogin/archlint/internal/analyzer.TypeInfo
+    to: github.com/mshogin/archlint/internal/analyzer.FieldInfo
+    type: uses

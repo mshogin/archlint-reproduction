@@ -1,0 +1,9 @@
+@startuml
+title TestSampleProcess
+
+participant "ProcessOrder" as service_ProcessOrder
+participant "Save" as repository_Save
+
+service_ProcessOrder -> repository_Save
+
+@enduml

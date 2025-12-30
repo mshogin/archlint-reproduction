@@ -1,0 +1,31 @@
+{
+  "test_name": "TestSampleProcess",
+  "start_time": "2024-12-01T10:00:00Z",
+  "end_time": "2024-12-01T10:00:01Z",
+  "calls": [
+    {
+      "event": "enter",
+      "function": "service.ProcessOrder",
+      "timestamp": "2024-12-01T10:00:00.100Z",
+      "depth": 0
+    },
+    {
+      "event": "enter",
+      "function": "repository.Save",
+      "timestamp": "2024-12-01T10:00:00.200Z",
+      "depth": 1
+    },
+    {
+      "event": "exit_success",
+      "function": "repository.Save",
+      "timestamp": "2024-12-01T10:00:00.300Z",
+      "depth": 1
+    },
+    {
+      "event": "exit_success",
+      "function": "service.ProcessOrder",
+      "timestamp": "2024-12-01T10:00:00.400Z",
+      "depth": 0
+    }
+  ]
+}
