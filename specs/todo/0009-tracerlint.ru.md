@@ -12,16 +12,16 @@
 ## Overview
 
 ### Problem Statement
-It is necessary to ensure the presence of tracer.Enter() and tracer.ExitSuccess()/ExitError() in all project functions. Manual verification is inefficient.
+Необходимо обеспечить наличие tracer.Enter() и tracer.ExitSuccess()/ExitError() во всех функциях проекта. Ручная проверка неэффективна.
 
 ### Solution Summary
-Create a static analyzer (linter) based on golang.org/x/tools/go/analysis that checks for the presence of tracer calls in functions.
+Создать статический анализатор (linter) на базе golang.org/x/tools/go/analysis, который проверяет наличие tracer вызовов в функциях.
 
 ### Success Metrics
-- Linter detects missing tracer.Enter()
-- Linter detects return without tracer.Exit*
-- Exclusion configuration is supported
-- @skip-tracer comment is supported
+- Linter обнаруживает отсутствующие tracer.Enter()
+- Linter обнаруживает return без tracer.Exit*
+- Поддерживается конфигурация исключений
+- Поддерживается @skip-tracer комментарий
 
 ---
 
@@ -105,7 +105,7 @@ Analyzer --> LintFunctions
 ## Requirements
 
 ### R1: Analyzer Definition
-**Description:** Analyzer definition
+**Description:** Определение анализатора
 
 ```go
 // Package: internal/linter
@@ -119,7 +119,7 @@ var Analyzer = &analysis.Analyzer{
 ```
 
 ### R2: Configuration Support
-**Description:** Configuration loading from .archlint.yaml
+**Description:** Загрузка конфигурации из .archlint.yaml
 
 ```go
 type Config struct {
@@ -136,15 +136,15 @@ func loadConfig() []string {
 ```
 
 ### R3: Exclusion Logic
-**Description:** Package and file exclusion
+**Description:** Исключение пакетов и файлов
 
-- Skip files from go-build cache
-- Skip _test.go files
-- Skip packages from exclude_packages
-- Skip functions with @skip-tracer comment
+- Пропускать файлы из go-build cache
+- Пропускать _test.go файлы
+- Пропускать пакеты из exclude_packages
+- Пропускать функции с @skip-tracer комментарием
 
 ### R4: Entry Check
-**Description:** Check for tracer.Enter() at function start
+**Description:** Проверка tracer.Enter() в начале функции
 
 ```go
 func hasTracerEnter(fn *ast.FuncDecl) bool {
@@ -157,7 +157,7 @@ func hasTracerEnter(fn *ast.FuncDecl) bool {
 ```
 
 ### R5: Exit Check
-**Description:** Check for tracer.Exit* before each return
+**Description:** Проверка tracer.Exit* перед каждым return
 
 ```go
 func checkReturns(pass *analysis.Pass, fn *ast.FuncDecl, funcName string) {
@@ -170,7 +170,7 @@ func checkReturns(pass *analysis.Pass, fn *ast.FuncDecl, funcName string) {
 ```
 
 ### R6: Entry Point
-**Description:** Separate tracelint binary
+**Description:** Отдельный бинарник tracelint
 
 ```go
 // Package: main
@@ -185,20 +185,20 @@ func main() {
 
 ## Acceptance Criteria
 
-- [ ] AC1: internal/linter/ directory is created
-- [ ] AC2: Analyzer is defined with Name="tracerlint"
-- [ ] AC3: cmd/tracelint/main.go is created
-- [ ] AC4: Reads configuration from .archlint.yaml
-- [ ] AC5: Excludes packages from exclude_packages
-- [ ] AC6: Excludes _test.go files
-- [ ] AC7: Excludes go-build cache files
-- [ ] AC8: Supports @skip-tracer comment
-- [ ] AC9: Checks for tracer.Enter() at the beginning
-- [ ] AC10: Checks for tracer.Exit* before return
-- [ ] AC11: Provides clear error messages
-- [ ] AC12: Correctly handles nested blocks
-- [ ] AC13: Skips anonymous functions
-- [ ] AC14: Makefile is updated with lint target
+- [ ] AC1: internal/linter/ директория создана
+- [ ] AC2: Analyzer определен с Name="tracerlint"
+- [ ] AC3: cmd/tracelint/main.go создан
+- [ ] AC4: Читает конфигурацию из .archlint.yaml
+- [ ] AC5: Исключает пакеты из exclude_packages
+- [ ] AC6: Исключает _test.go файлы
+- [ ] AC7: Исключает go-build cache файлы
+- [ ] AC8: Поддерживает @skip-tracer комментарий
+- [ ] AC9: Проверяет tracer.Enter() в начале
+- [ ] AC10: Проверяет tracer.Exit* перед return
+- [ ] AC11: Выдает понятные сообщения об ошибках
+- [ ] AC12: Корректно обрабатывает вложенные блоки
+- [ ] AC13: Пропускает анонимные функции
+- [ ] AC14: Makefile обновлен с lint target
 
 ---
 

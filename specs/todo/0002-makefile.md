@@ -12,16 +12,16 @@
 ## Overview
 
 ### Problem Statement
-Необходимо автоматизировать базовые команды разработки (сборка, форматирование, тестирование) через единый интерфейс Makefile.
+Need to automate basic development commands (build, format, test) through a unified Makefile interface.
 
 ### Solution Summary
-Создать начальный Makefile с базовыми целями для сборки и разработки.
+Create an initial Makefile with basic targets for build and development.
 
 ### Success Metrics
-- `make help` показывает доступные команды
-- `make build` собирает бинарник
-- `make fmt` форматирует код
-- `make test` запускает тесты
+- `make help` shows available commands
+- `make build` builds the binary
+- `make fmt` formats code
+- `make test` runs tests
 
 ---
 
@@ -46,10 +46,10 @@ class Makefile {
 }
 
 note right of Makefile
-  Базовый Makefile.
-  Дополнительные targets
-  будут добавляться по мере
-  развития проекта.
+  Basic Makefile.
+  Additional targets
+  will be added as
+  the project evolves.
 end note
 
 @enduml
@@ -60,38 +60,38 @@ end note
 ## Requirements
 
 ### R1: Help Target
-- Показывать список доступных команд с описаниями
-- Использовать grep для извлечения комментариев
+- Show list of available commands with descriptions
+- Use grep to extract comments
 
 ### R2: Build Target
-- Создавать директорию bin/
-- Компилировать archlint в bin/archlint
-- Выводить сообщение об успешной сборке
+- Create bin/ directory
+- Compile archlint to bin/archlint
+- Output success message
 
 ### R3: Install Target
-- Зависеть от build
-- Устанавливать archlint в $GOPATH/bin
+- Depend on build
+- Install archlint to $GOPATH/bin
 
 ### R4: Format Target
-- Запускать go fmt ./...
+- Run go fmt ./...
 
 ### R5: Test Target
-- Запускать go test -v ./...
+- Run go test -v ./...
 
 ### R6: Clean Target
-- Удалять bin/
+- Remove bin/
 
 ---
 
 ## Acceptance Criteria
 
-- [ ] AC1: make help показывает команды
-- [ ] AC2: make build создает bin/archlint
-- [ ] AC3: make install устанавливает в GOPATH
-- [ ] AC4: make fmt форматирует код
-- [ ] AC5: make test запускает тесты
-- [ ] AC6: make clean очищает bin/
-- [ ] AC7: .DEFAULT_GOAL установлен в help
+- [ ] AC1: make help shows commands
+- [ ] AC2: make build creates bin/archlint
+- [ ] AC3: make install installs to GOPATH
+- [ ] AC4: make fmt formats code
+- [ ] AC5: make test runs tests
+- [ ] AC6: make clean cleans bin/
+- [ ] AC7: .DEFAULT_GOAL set to help
 
 ---
 
@@ -113,7 +113,7 @@ end note
 ## Testing Strategy
 
 ### Unit Tests
-- [ ] `make build` успешно компилирует
+- [ ] `make build` compiles successfully
 - Coverage target: N/A
 
 ---
@@ -148,4 +148,3 @@ clean: ## Clean artifacts
 
 .DEFAULT_GOAL := help
 ```
-

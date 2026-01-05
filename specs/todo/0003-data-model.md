@@ -12,15 +12,15 @@
 ## Overview
 
 ### Problem Statement
-Необходимо определить структуры данных для представления архитектурного графа, который будет хранить информацию о компонентах и связях между ними.
+Need to define data structures for representing an architecture graph that will store information about components and relationships between them.
 
 ### Solution Summary
-Создать пакет internal/model с типами Graph, Node и Edge для представления архитектурного графа с поддержкой сериализации в YAML.
+Create package internal/model with Graph, Node, and Edge types to represent an architecture graph with YAML serialization support.
 
 ### Success Metrics
-- Типы определены и документированы
-- YAML теги позволяют корректную сериализацию
-- Код компилируется без ошибок
+- Types defined and documented
+- YAML tags enable correct serialization
+- Code compiles without errors
 
 ---
 
@@ -39,9 +39,9 @@ class Graph {
   +Edges: []Edge
 }
 note right of Graph
-  Основная структура графа.
-  Nodes = компоненты системы
-  Edges = связи между компонентами
+  Main graph structure.
+  Nodes = system components
+  Edges = relationships between components
 
   YAML tags:
   - Nodes -> "components"
@@ -54,7 +54,7 @@ class Node {
   +Entity: string
 }
 note right of Node
-  Узел графа (компонент).
+  Graph node (component).
 
   Entity types:
   - package
@@ -72,7 +72,7 @@ class Edge {
   +Type: string
 }
 note right of Edge
-  Ребро графа (связь).
+  Graph edge (relationship).
 
   Type values:
   - contains
@@ -93,7 +93,7 @@ Graph "1" *-- "*" Edge
 ## Requirements
 
 ### R1: Graph Type
-**Description:** Корневой тип для представления архитектурного графа
+**Description:** Root type for representing the architecture graph
 
 ```go
 // Package: internal/model
@@ -106,7 +106,7 @@ type Graph struct {
 ```
 
 ### R2: Node Type
-**Description:** Тип для представления узла графа (компонента)
+**Description:** Type for representing a graph node (component)
 
 ```go
 type Node struct {
@@ -117,15 +117,15 @@ type Node struct {
 ```
 
 **Entity Values:**
-- `package` - Go пакет
-- `struct` - структура
-- `interface` - интерфейс
-- `function` - функция
-- `method` - метод
-- `external` - внешняя зависимость
+- `package` - Go package
+- `struct` - structure
+- `interface` - interface
+- `function` - function
+- `method` - method
+- `external` - external dependency
 
 ### R3: Edge Type
-**Description:** Тип для представления ребра графа (связи)
+**Description:** Type for representing a graph edge (relationship)
 
 ```go
 type Edge struct {
@@ -137,24 +137,24 @@ type Edge struct {
 ```
 
 **Type Values:**
-- `contains` - содержит (package->type, type->method)
-- `calls` - вызывает (function->function)
-- `uses` - использует (type->type в поле)
-- `embeds` - встраивает (type->type embedding)
-- `import` - импортирует (package->package)
+- `contains` - contains (package->type, type->method)
+- `calls` - calls (function->function)
+- `uses` - uses (type->type in field)
+- `embeds` - embeds (type->type embedding)
+- `import` - imports (package->package)
 
 ---
 
 ## Acceptance Criteria
 
-- [ ] AC1: Package internal/model создан
-- [ ] AC2: Тип Graph определен с YAML тегами
-- [ ] AC3: Тип Node определен с YAML тегами
-- [ ] AC4: Тип Edge определен с YAML тегами
-- [ ] AC5: YAML тег для Nodes = "components"
-- [ ] AC6: YAML тег для Edges = "links"
-- [ ] AC7: Код компилируется без ошибок
-- [ ] AC8: Package содержит godoc комментарии
+- [ ] AC1: Package internal/model created
+- [ ] AC2: Graph type defined with YAML tags
+- [ ] AC3: Node type defined with YAML tags
+- [ ] AC4: Edge type defined with YAML tags
+- [ ] AC5: YAML tag for Nodes = "components"
+- [ ] AC6: YAML tag for Edges = "links"
+- [ ] AC7: Code compiles without errors
+- [ ] AC8: Package contains godoc comments
 
 ---
 
@@ -187,9 +187,9 @@ type Edge struct {
 ## Testing Strategy
 
 ### Unit Tests
-- [ ] Типы компилируются
-- [ ] YAML сериализация работает корректно
-- Coverage target: N/A (только определения типов)
+- [ ] Types compile
+- [ ] YAML serialization works correctly
+- Coverage target: N/A (type definitions only)
 
 ---
 
@@ -218,6 +218,6 @@ links:
 ```
 
 ### Design Decisions
-- Использование YAML тегов "components" и "links" вместо "nodes" и "edges" для совместимости с DocHub
-- Method поле опциональное (omitempty) для вызовов методов
-- Type поле опциональное для обратной совместимости
+- Using YAML tags "components" and "links" instead of "nodes" and "edges" for DocHub compatibility
+- Method field is optional (omitempty) for method calls
+- Type field is optional for backward compatibility

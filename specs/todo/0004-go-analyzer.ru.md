@@ -12,16 +12,16 @@
 ## Overview
 
 ### Problem Statement
-Need to implement a Go code analyzer that parses source code using AST and builds a dependency graph between components (packages, types, functions, methods).
+Необходимо реализовать анализатор Go кода, который парсит исходный код с помощью AST и строит граф зависимостей между компонентами (пакетами, типами, функциями, методами).
 
 ### Solution Summary
-Create GoAnalyzer in package internal/analyzer that uses go/ast and go/parser to analyze Go files and build the model graph.
+Создать GoAnalyzer в пакете internal/analyzer, который использует go/ast и go/parser для анализа Go файлов и построения графа модели.
 
 ### Success Metrics
-- Analyzer correctly parses Go code
-- All component types are extracted (package, struct, interface, function, method)
-- All relationship types are determined (contains, calls, uses, embeds, import)
-- External dependencies are identified
+- Анализатор корректно парсит Go код
+- Все типы компонентов извлекаются (package, struct, interface, function, method)
+- Все типы связей определяются (contains, calls, uses, embeds, import)
+- Внешние зависимости идентифицируются
 
 ---
 
@@ -226,7 +226,7 @@ deactivate GA
 ## Requirements
 
 ### R1: GoAnalyzer Type
-**Description:** Main analyzer type
+**Description:** Основной тип анализатора
 
 ```go
 // Package: internal/analyzer
@@ -246,29 +246,29 @@ func (a *GoAnalyzer) Analyze(dir string) (*model.Graph, error)
 ```
 
 ### R2: File Walking
-**Description:** Directory traversal with filtering
+**Description:** Обход директории с фильтрацией
 
-- Skip vendor/, node_modules/, .git/, bin/
-- Skip non-.go files
-- Skip _test.go files
+- Пропускать vendor/, node_modules/, .git/, bin/
+- Пропускать не-.go файлы
+- Пропускать _test.go файлы
 
 ### R3: AST Parsing
-**Description:** Go file parsing
+**Description:** Парсинг Go файлов
 
-- Extract package name
-- Extract imports (except stdlib)
-- Extract type declarations (struct, interface)
-- Extract functions and methods
-- Extract function/method calls
+- Извлечение имени пакета
+- Извлечение импортов (кроме stdlib)
+- Извлечение объявлений типов (struct, interface)
+- Извлечение функций и методов
+- Извлечение вызовов функций/методов
 
 ### R4: Graph Building
-**Description:** Build graph from collected information
+**Description:** Построение графа из собранной информации
 
-- Package nodes with type "package"
-- Type nodes with type "struct"/"interface"
-- Function nodes with type "function"
-- Method nodes with type "method"
-- External dependency nodes with type "external"
+- Package nodes с типом "package"
+- Type nodes с типом "struct"/"interface"
+- Function nodes с типом "function"
+- Method nodes с типом "method"
+- External dependency nodes с типом "external"
 - Contains edges (package->type, type->method)
 - Import edges (package->package)
 - Calls edges (function->function)
@@ -276,43 +276,43 @@ func (a *GoAnalyzer) Analyze(dir string) (*model.Graph, error)
 - Embeds edges (type->type)
 
 ### R5: Call Resolution
-**Description:** Resolve call targets
+**Description:** Разрешение целей вызовов
 
-- Check if target exists in known functions/methods
-- Filter builtin functions (make, new, len, etc.)
-- Skip unresolved calls
+- Проверка существования цели в known functions/methods
+- Фильтрация builtin функций (make, new, len, etc.)
+- Пропуск нерезольвленных вызовов
 
 ### R6: Type Dependency Resolution
-**Description:** Resolve type dependencies
+**Description:** Разрешение зависимостей типов
 
-- Filter primitive types
-- Resolve local types
-- Resolve imported types
+- Фильтрация примитивных типов
+- Резолвинг локальных типов
+- Резолвинг импортированных типов
 
 ---
 
 ## Acceptance Criteria
 
-- [ ] AC1: NewGoAnalyzer() creates instance
-- [ ] AC2: Analyze() traverses directory
-- [ ] AC3: vendor, .git, bin are skipped
-- [ ] AC4: _test.go files are skipped
-- [ ] AC5: Packages are extracted
-- [ ] AC6: Struct types are extracted
-- [ ] AC7: Interface types are extracted
-- [ ] AC8: Functions are extracted
-- [ ] AC9: Methods are extracted
-- [ ] AC10: Calls are determined
-- [ ] AC11: Imports are determined
-- [ ] AC12: Contains edges are built
-- [ ] AC13: Calls edges are built
-- [ ] AC14: Uses edges are built
-- [ ] AC15: Embeds edges are built
-- [ ] AC16: External dependencies are created
-- [ ] AC17: Stdlib imports are filtered
-- [ ] AC18: Builtin functions are filtered
-- [ ] AC19: Primitive types are filtered
-- [ ] AC20: tracer.Enter/Exit in every function
+- [ ] AC1: NewGoAnalyzer() создает экземпляр
+- [ ] AC2: Analyze() обходит директорию
+- [ ] AC3: Пропускаются vendor, .git, bin
+- [ ] AC4: Пропускаются _test.go файлы
+- [ ] AC5: Извлекаются пакеты
+- [ ] AC6: Извлекаются struct типы
+- [ ] AC7: Извлекаются interface типы
+- [ ] AC8: Извлекаются функции
+- [ ] AC9: Извлекаются методы
+- [ ] AC10: Определяются вызовы
+- [ ] AC11: Определяются импорты
+- [ ] AC12: Строятся contains edges
+- [ ] AC13: Строятся calls edges
+- [ ] AC14: Строятся uses edges
+- [ ] AC15: Строятся embeds edges
+- [ ] AC16: External dependencies создаются
+- [ ] AC17: Stdlib imports фильтруются
+- [ ] AC18: Builtin functions фильтруются
+- [ ] AC19: Примитивные типы фильтруются
+- [ ] AC20: tracer.Enter/Exit в каждой функции
 
 ---
 

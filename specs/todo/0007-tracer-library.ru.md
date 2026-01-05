@@ -12,16 +12,16 @@
 ## Overview
 
 ### Problem Statement
-It is necessary to implement a tracing library for recording execution flow in tests. This will allow building behavioral graphs based on actual code execution.
+Необходимо реализовать библиотеку трассировки для записи execution flow в тестах. Это позволит строить behavioral graphs на основе реального выполнения кода.
 
 ### Solution Summary
-Create a pkg/tracer package with functions for recording function entry/exit and saving traces in JSON format.
+Создать пакет pkg/tracer с функциями для записи входа/выхода из функций и сохранения трассировки в JSON формат.
 
 ### Success Metrics
-- StartTrace() starts a new trace
-- Enter()/ExitSuccess()/ExitError() record events
-- Save() saves trace to JSON file
-- Thread-safe operations
+- StartTrace() начинает новую трассировку
+- Enter()/ExitSuccess()/ExitError() записывают события
+- Save() сохраняет трассировку в JSON файл
+- Thread-safe операции
 
 ---
 
@@ -71,9 +71,9 @@ class Trace {
   +Save(filename string) error
 }
 note right of Trace
-  Represents a test execution trace.
-  JSON tags for serialization.
-  Mutex for thread-safety.
+  Представляет трассировку выполнения теста.
+  JSON tags для сериализации.
+  Mutex для thread-safety.
 end note
 
 class Call {
@@ -84,7 +84,7 @@ class Call {
   +Depth: int
 }
 note right of Call
-  Represents a function call.
+  Представляет вызов функции.
 
   Event values:
   - "enter"
@@ -194,7 +194,7 @@ deactivate T
 ## Requirements
 
 ### R1: Trace Type
-**Description:** Type for storing trace
+**Description:** Тип для хранения трассировки
 
 ```go
 // Package: pkg/tracer
@@ -210,7 +210,7 @@ type Trace struct {
 ```
 
 ### R2: Call Type
-**Description:** Type for recording a call
+**Description:** Тип для записи вызова
 
 ```go
 type Call struct {
@@ -223,7 +223,7 @@ type Call struct {
 ```
 
 ### R3: Global State
-**Description:** Global state for current trace
+**Description:** Глобальное состояние для текущей трассировки
 
 ```go
 var (
@@ -234,7 +234,7 @@ var (
 ```
 
 ### R4: StartTrace Function
-**Description:** Start a new trace
+**Description:** Начало новой трассировки
 
 ```go
 func StartTrace(testName string) *Trace {
@@ -253,7 +253,7 @@ func StartTrace(testName string) *Trace {
 ```
 
 ### R5: Enter Function
-**Description:** Record function entry
+**Description:** Запись входа в функцию
 
 ```go
 func Enter(fn string) {
@@ -279,7 +279,7 @@ func Enter(fn string) {
 ```
 
 ### R6: ExitSuccess Function
-**Description:** Record successful exit
+**Description:** Запись успешного выхода
 
 ```go
 func ExitSuccess(fn string) {
@@ -308,7 +308,7 @@ func ExitSuccess(fn string) {
 ```
 
 ### R7: ExitError Function
-**Description:** Record exit with error
+**Description:** Запись выхода с ошибкой
 
 ```go
 func ExitError(fn string, err error) {
@@ -319,7 +319,7 @@ func ExitError(fn string, err error) {
 ```
 
 ### R8: Exit Function (Deprecated)
-**Description:** Wrapper for backward compatibility
+**Description:** Обертка для обратной совместимости
 
 ```go
 func Exit(fn string, err error) {
@@ -332,7 +332,7 @@ func Exit(fn string, err error) {
 ```
 
 ### R9: Save Method
-**Description:** Save trace to file
+**Description:** Сохранение трассировки в файл
 
 ```go
 func (t *Trace) Save(filename string) error {
@@ -343,11 +343,11 @@ func (t *Trace) Save(filename string) error {
 
     data, err := json.MarshalIndent(t, "", "  ")
     if err != nil {
-        return fmt.Errorf("trace serialization error: %w", err)
+        return fmt.Errorf("ошибка сериализации трассировки: %w", err)
     }
 
     if err := os.WriteFile(filename, data, 0o600); err != nil {
-        return fmt.Errorf("trace file write error: %w", err)
+        return fmt.Errorf("ошибка записи файла трассировки: %w", err)
     }
 
     return nil
@@ -355,7 +355,7 @@ func (t *Trace) Save(filename string) error {
 ```
 
 ### R10: StopTrace Function
-**Description:** Stop current trace
+**Description:** Остановка текущей трассировки
 
 ```go
 func StopTrace() *Trace {
@@ -374,19 +374,19 @@ func StopTrace() *Trace {
 
 ## Acceptance Criteria
 
-- [ ] AC1: Package pkg/tracer is created
-- [ ] AC2: Trace type with JSON tags
-- [ ] AC3: Call type with JSON tags
-- [ ] AC4: StartTrace() initializes trace
-- [ ] AC5: Enter() records "enter" event
-- [ ] AC6: ExitSuccess() records "exit_success"
-- [ ] AC7: ExitError() records "exit_error" with message
-- [ ] AC8: Exit() routes to ExitSuccess/ExitError
-- [ ] AC9: Save() saves JSON with indentation
-- [ ] AC10: StopTrace() clears state
-- [ ] AC11: Thread-safe with sync.Mutex
-- [ ] AC12: Depth correctly increments/decrements
-- [ ] AC13: Enter/Exit are safe without StartTrace
+- [ ] AC1: Package pkg/tracer создан
+- [ ] AC2: Trace тип с JSON тегами
+- [ ] AC3: Call тип с JSON тегами
+- [ ] AC4: StartTrace() инициализирует трассировку
+- [ ] AC5: Enter() записывает "enter" событие
+- [ ] AC6: ExitSuccess() записывает "exit_success"
+- [ ] AC7: ExitError() записывает "exit_error" с сообщением
+- [ ] AC8: Exit() роутит к ExitSuccess/ExitError
+- [ ] AC9: Save() сохраняет JSON с отступами
+- [ ] AC10: StopTrace() очищает состояние
+- [ ] AC11: Thread-safe с sync.Mutex
+- [ ] AC12: Depth корректно увеличивается/уменьшается
+- [ ] AC13: Enter/Exit безопасны без StartTrace
 
 ---
 

@@ -12,16 +12,16 @@
 ## Overview
 
 ### Problem Statement
-It is necessary to verify the correct operation of the entire archlint pipeline: from code analysis to context generation from traces.
+Необходимо проверить корректность работы всего pipeline archlint: от анализа кода до генерации контекстов из трассировок.
 
 ### Solution Summary
-Create an integration test TestFullCycle that verifies the full cycle of operation using sample code.
+Создать интеграционный тест TestFullCycle, который проверяет полный цикл работы с использованием sample кода.
 
 ### Success Metrics
-- Test verifies collect (code analysis)
-- Test verifies trace (context generation)
-- Test uses real sample code with tracing
-- All components integrate correctly
+- Тест проверяет collect (анализ кода)
+- Тест проверяет trace (генерация контекстов)
+- Тест использует реальный sample код с трассировкой
+- Все компоненты интегрируются корректно
 
 ---
 
@@ -129,7 +129,7 @@ deactivate FC
 ## Requirements
 
 ### R1: Test Structure
-**Description:** Create test directory structure
+**Description:** Создать структуру тестовых директорий
 
 ```
 tests/
@@ -145,7 +145,7 @@ tests/
 ```
 
 ### R2: Sample Code
-**Description:** Create sample code with tracer calls
+**Description:** Создать sample код с tracer вызовами
 
 ```go
 // tests/testdata/sample/calculator.go
@@ -170,7 +170,7 @@ func (c *Calculator) Calculate(a, b int) int {
 ```
 
 ### R3: Sample Test with Tracing
-**Description:** Test that creates a trace
+**Description:** Тест, который создает трассировку
 
 ```go
 // tests/testdata/sample/calculator_traced_test.go
@@ -188,7 +188,7 @@ func TestCalculateWithTrace(t *testing.T) {
 ```
 
 ### R4: Full Cycle Test
-**Description:** Integration test
+**Description:** Интеграционный тест
 
 ```go
 // tests/fullcycle_test.go
@@ -204,31 +204,31 @@ func TestFullCycle(t *testing.T) {
 ```
 
 ### R5: Assertions
-**Description:** What to verify
+**Description:** Что проверять
 
-- Graph contains expected nodes and edges
-- Trace file is created
-- Trace contains expected functions
-- Context contains all traced components
-- PlantUML file exists
+- Graph содержит expected nodes и edges
+- Trace file создан
+- Trace содержит expected functions
+- Context содержит all traced components
+- PlantUML file существует
 
 ---
 
 ## Acceptance Criteria
 
-- [ ] AC1: tests/ directory is created
-- [ ] AC2: tests/testdata/sample/ contains sample code
-- [ ] AC3: calculator.go with tracer calls
-- [ ] AC4: calculator_traced_test.go with tracing
-- [ ] AC5: fullcycle_test.go is implemented
-- [ ] AC6: Test creates output directories
-- [ ] AC7: Test analyzes sample code
-- [ ] AC8: Test runs traced test
-- [ ] AC9: Test verifies trace file
-- [ ] AC10: Test generates contexts
-- [ ] AC11: Test verifies PlantUML
-- [ ] AC12: `go test ./tests/...` passes
-- [ ] AC13: Output in tests/output/ (gitignored)
+- [ ] AC1: tests/ директория создана
+- [ ] AC2: tests/testdata/sample/ содержит sample код
+- [ ] AC3: calculator.go с tracer вызовами
+- [ ] AC4: calculator_traced_test.go с трассировкой
+- [ ] AC5: fullcycle_test.go реализован
+- [ ] AC6: Тест создает output директории
+- [ ] AC7: Тест анализирует sample код
+- [ ] AC8: Тест запускает traced test
+- [ ] AC9: Тест проверяет trace file
+- [ ] AC10: Тест генерирует contexts
+- [ ] AC11: Тест проверяет PlantUML
+- [ ] AC12: `go test ./tests/...` проходит
+- [ ] AC13: Output в tests/output/ (gitignored)
 
 ---
 

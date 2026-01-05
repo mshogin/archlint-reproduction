@@ -12,16 +12,16 @@
 ## Overview
 
 ### Problem Statement
-It is necessary to implement the `trace` command for generating DocHub contexts and PlantUML sequence diagrams from JSON test traces.
+Необходимо реализовать команду `trace` для генерации DocHub контекстов и PlantUML sequence диаграмм из JSON трассировок тестов.
 
 ### Solution Summary
-Create a trace subcommand and context_generator.go module in pkg/tracer for converting traces to contexts and diagrams.
+Создать подкоманду trace и модуль context_generator.go в pkg/tracer для преобразования трассировок в контексты и диаграммы.
 
 ### Success Metrics
-- Command reads JSON trace files
-- DocHub contexts with components are generated
-- PlantUML sequence diagrams are generated
-- Wildcard patterns for components are supported
+- Команда читает JSON файлы трассировок
+- Генерируются DocHub контексты с компонентами
+- Генерируются PlantUML sequence диаграммы
+- Поддерживаются wildcard паттерны для компонентов
 
 ---
 
@@ -203,27 +203,27 @@ deactivate TC
 ## Requirements
 
 ### R1: Trace Command
-**Description:** Definition of the trace command
+**Description:** Определение команды trace
 
 ```go
 // Package: internal/cli
 // File: trace.go
 
 var traceCmd = &cobra.Command{
-    Use:   "trace [traces directory]",
-    Short: "Generates contexts from test traces",
-    Long: `Analyzes JSON trace files and generates DocHub contexts.
+    Use:   "trace [директория с трассировками]",
+    Short: "Генерирует контексты из трассировок тестов",
+    Long: `Анализирует JSON файлы трассировок и генерирует DocHub контексты.
 
-Each trace represents one execution flow (test) and is converted to:
-1. DocHub context with component list
-2. PlantUML sequence diagram`,
+Каждая трассировка представляет один execution flow (тест) и конвертируется в:
+1. DocHub контекст с списком компонентов
+2. PlantUML sequence диаграмму`,
     Args: cobra.ExactArgs(1),
     RunE: runTrace,
 }
 ```
 
 ### R2: Context Type
-**Description:** DocHub context structure
+**Description:** Структура DocHub контекста
 
 ```go
 // Package: pkg/tracer
@@ -246,7 +246,7 @@ type UMLConfig struct {
 ```
 
 ### R3: GenerateContextsFromTraces
-**Description:** Main generation function
+**Description:** Главная функция генерации
 
 ```go
 func GenerateContextsFromTraces(traceDir string) (Contexts, error) {
@@ -267,7 +267,7 @@ func GenerateContextsFromTraces(traceDir string) (Contexts, error) {
 ```
 
 ### R4: GenerateContextFromTrace
-**Description:** Generate context from a single trace
+**Description:** Генерация контекста из одной трассировки
 
 ```go
 func GenerateContextFromTrace(trace *Trace) (Context, error) {
@@ -291,7 +291,7 @@ func GenerateContextFromTrace(trace *Trace) (Context, error) {
 ```
 
 ### R5: GenerateSequenceDiagram
-**Description:** Generate PlantUML diagram
+**Description:** Генерация PlantUML диаграммы
 
 ```go
 func GenerateSequenceDiagram(trace *Trace, outputFile string) error {
@@ -302,7 +302,7 @@ func GenerateSequenceDiagram(trace *Trace, outputFile string) error {
 ```
 
 ### R6: Name Transformations
-**Description:** Name transformation functions
+**Description:** Функции преобразования имен
 
 ```go
 // TestProcessOrder -> "Process Order"
@@ -319,7 +319,7 @@ func camelToSnake(s string) string
 ```
 
 ### R7: Wildcard Pattern Matching
-**Description:** Wildcard support for components
+**Description:** Поддержка wildcards для компонентов
 
 ```go
 // Matches:
@@ -335,20 +335,20 @@ func ExpandComponentPatterns(patterns, allComponents []string) []string
 
 ## Acceptance Criteria
 
-- [ ] AC1: traceCmd is defined with -o flag
-- [ ] AC2: Reads JSON files from directory
-- [ ] AC3: Generates Context for each trace
-- [ ] AC4: Components contain hierarchical IDs
-- [ ] AC5: Generates PlantUML sequence diagrams
-- [ ] AC6: PlantUML contains participants
-- [ ] AC7: PlantUML contains arrows for calls
-- [ ] AC8: Errors are marked in diagram
-- [ ] AC9: humanizeTestName transforms names correctly
-- [ ] AC10: sanitizeContextID creates valid IDs
-- [ ] AC11: camelToSnake works correctly
-- [ ] AC12: MatchComponentPattern supports wildcards
-- [ ] AC13: Contexts are saved to YAML
-- [ ] AC14: tracer.Enter/Exit in CLI functions
+- [ ] AC1: traceCmd определен с флагом -o
+- [ ] AC2: Читает JSON файлы из директории
+- [ ] AC3: Генерирует Context для каждого trace
+- [ ] AC4: Components содержат hierarchical IDs
+- [ ] AC5: Генерирует PlantUML sequence диаграммы
+- [ ] AC6: PlantUML содержит participants
+- [ ] AC7: PlantUML содержит arrows для вызовов
+- [ ] AC8: Ошибки маркируются в диаграмме
+- [ ] AC9: humanizeTestName преобразует имена корректно
+- [ ] AC10: sanitizeContextID создает валидные IDs
+- [ ] AC11: camelToSnake работает корректно
+- [ ] AC12: MatchComponentPattern поддерживает wildcards
+- [ ] AC13: Контексты сохраняются в YAML
+- [ ] AC14: tracer.Enter/Exit в функциях CLI
 
 ---
 

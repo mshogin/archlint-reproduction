@@ -12,16 +12,16 @@
 ## Overview
 
 ### Problem Statement
-Need to implement a command-line interface (CLI) for archlint with support for subcommands, flags, and help.
+Необходимо реализовать интерфейс командной строки (CLI) для archlint с поддержкой подкоманд, флагов и справки.
 
 ### Solution Summary
-Use the Cobra library to create a CLI with a root command and subcommands (collect, trace).
+Использовать библиотеку Cobra для создания CLI с корневой командой и подкомандами (collect, trace).
 
 ### Success Metrics
-- CLI runs without errors
-- `archlint --help` shows help
-- `archlint --version` shows version
-- Subcommands register correctly
+- CLI запускается без ошибок
+- `archlint --help` показывает справку
+- `archlint --version` показывает версию
+- Подкоманды регистрируются корректно
 
 ---
 
@@ -111,7 +111,7 @@ rootCmd "1" *-- "1" traceCmd
 ## Requirements
 
 ### R1: Root Command
-**Description:** Root archlint command
+**Description:** Корневая команда archlint
 
 ```go
 // Package: internal/cli
@@ -121,22 +121,22 @@ var version = "0.1.0"
 
 var rootCmd = &cobra.Command{
     Use:     "archlint",
-    Short:   "Tool for building architecture graphs",
-    Long:    `archlint - a tool for building structural graphs and behavior graphs
-from Go source code.`,
+    Short:   "Инструмент для построения архитектурных графов",
+    Long:    `archlint - инструмент для построения структурных графов и графов поведения
+из исходного кода на языке Go.`,
     Version: version,
 }
 
 func Execute() error {
     if err := rootCmd.Execute(); err != nil {
-        return fmt.Errorf("command execution error: %w", err)
+        return fmt.Errorf("ошибка выполнения команды: %w", err)
     }
     return nil
 }
 ```
 
 ### R2: Entry Point
-**Description:** Application entry point
+**Description:** Точка входа приложения
 
 ```go
 // Package: main
@@ -155,7 +155,7 @@ func main() {
 ```
 
 ### R3: Subcommand Registration
-**Description:** Subcommands are registered in init()
+**Description:** Подкоманды регистрируются в init()
 
 ```go
 func init() {
@@ -168,15 +168,15 @@ func init() {
 
 ## Acceptance Criteria
 
-- [ ] AC1: Package internal/cli created
-- [ ] AC2: rootCmd defined
-- [ ] AC3: Execute() function exported
-- [ ] AC4: cmd/archlint/main.go calls cli.Execute()
-- [ ] AC5: Version set to "0.1.0"
-- [ ] AC6: archlint --help works
-- [ ] AC7: archlint --version works
-- [ ] AC8: tracer.Enter/Exit in Execute()
-- [ ] AC9: tracer.Enter/Exit in main()
+- [ ] AC1: Package internal/cli создан
+- [ ] AC2: rootCmd определен
+- [ ] AC3: Execute() функция экспортирована
+- [ ] AC4: cmd/archlint/main.go вызывает cli.Execute()
+- [ ] AC5: Version установлен в "0.1.0"
+- [ ] AC6: archlint --help работает
+- [ ] AC7: archlint --version работает
+- [ ] AC8: tracer.Enter/Exit в Execute()
+- [ ] AC9: tracer.Enter/Exit в main()
 
 ---
 
@@ -206,7 +206,7 @@ func init() {
 ## Testing Strategy
 
 ### Unit Tests
-- [ ] Execute() does not return error with --help
+- [ ] Execute() не возвращает ошибку при --help
 - Coverage target: N/A
 
 ---
@@ -221,5 +221,5 @@ archlint
 ```
 
 ### Error Handling
-- All errors are wrapped with fmt.Errorf with context
-- main() calls os.Exit(1) on error
+- Все ошибки оборачиваются в fmt.Errorf с контекстом
+- main() вызывает os.Exit(1) при ошибке

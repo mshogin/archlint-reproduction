@@ -12,16 +12,16 @@
 ## Overview
 
 ### Problem Statement
-It is necessary to implement the `collect` command to collect architecture from source code and save the graph to a YAML file.
+Необходимо реализовать команду `collect` для сбора архитектуры из исходного кода и сохранения графа в YAML файл.
 
 ### Solution Summary
-Create a collect subcommand that uses GoAnalyzer for code analysis and saves the result in YAML format.
+Создать подкоманду collect, которая использует GoAnalyzer для анализа кода и сохраняет результат в YAML формате.
 
 ### Success Metrics
-- Command accepts directory as an argument
-- Supports -o (output) and -l (language) flags
-- Result is saved to YAML file
-- Statistics on components are displayed
+- Команда принимает директорию как аргумент
+- Поддерживаются флаги -o (output) и -l (language)
+- Результат сохраняется в YAML файл
+- Выводится статистика по компонентам
 
 ---
 
@@ -140,18 +140,18 @@ collectCmd --> functions
 ## Requirements
 
 ### R1: Command Definition
-**Description:** Definition of the collect command
+**Description:** Определение команды collect
 
 ```go
 // Package: internal/cli
 // File: collect.go
 
 var collectCmd = &cobra.Command{
-    Use:   "collect [directory]",
-    Short: "Collect architecture from source code",
-    Long: `Analyzes source code and builds an architecture graph in YAML format.
+    Use:   "collect [директория]",
+    Short: "Сбор архитектуры из исходного кода",
+    Long: `Анализирует исходный код и строит граф архитектуры в формате YAML.
 
-Example:
+Пример:
   archlint collect . -l go -o architecture.yaml`,
     Args: cobra.ExactArgs(1),
     RunE: runCollect,
@@ -159,7 +159,7 @@ Example:
 ```
 
 ### R2: Flags
-**Description:** Command flags
+**Description:** Флаги команды
 
 ```go
 var (
@@ -169,15 +169,15 @@ var (
 
 func init() {
     collectCmd.Flags().StringVarP(&collectOutputFile, "output", "o",
-        "architecture.yaml", "Output YAML file")
+        "architecture.yaml", "Выходной YAML файл")
     collectCmd.Flags().StringVarP(&collectLanguage, "language", "l",
-        "go", "Programming language (go)")
+        "go", "Язык программирования (go)")
     rootCmd.AddCommand(collectCmd)
 }
 ```
 
 ### R3: Run Function
-**Description:** Main execution function
+**Description:** Основная функция выполнения
 
 ```go
 func runCollect(cmd *cobra.Command, args []string) error {
@@ -207,28 +207,28 @@ func runCollect(cmd *cobra.Command, args []string) error {
 ```
 
 ### R4: Statistics Output
-**Description:** Statistics output
+**Description:** Вывод статистики
 
 ```
-Code analysis: . (language: go)
-Components found: 95
+Анализ кода: . (язык: go)
+Найдено компонентов: 95
   - package: 5
   - struct: 23
   - function: 30
   - method: 21
   - external: 15
-Links found: 129
+Найдено связей: 129
 ```
 
 ### R5: Error Types
-**Description:** Static errors
+**Description:** Статические ошибки
 
 ```go
 var (
-    errDirNotExist       = errors.New("directory does not exist")
-    errUnsupportedLang   = errors.New("unsupported language")
-    errFileCreate        = errors.New("file creation error")
-    errYAMLSerialization = errors.New("YAML serialization error")
+    errDirNotExist       = errors.New("директория не существует")
+    errUnsupportedLang   = errors.New("неподдерживаемый язык")
+    errFileCreate        = errors.New("ошибка создания файла")
+    errYAMLSerialization = errors.New("ошибка сериализации YAML")
 )
 ```
 
@@ -236,19 +236,19 @@ var (
 
 ## Acceptance Criteria
 
-- [ ] AC1: collectCmd is defined
-- [ ] AC2: Flag -o/--output works
-- [ ] AC3: Flag -l/--language works
+- [ ] AC1: collectCmd определен
+- [ ] AC2: Флаг -o/--output работает
+- [ ] AC3: Флаг -l/--language работает
 - [ ] AC4: Default output = "architecture.yaml"
 - [ ] AC5: Default language = "go"
-- [ ] AC6: Directory existence check
-- [ ] AC7: GoAnalyzer.Analyze() is called
-- [ ] AC8: Statistics output by entity types
-- [ ] AC9: Save to YAML with indent 2
-- [ ] AC10: Success message on save
-- [ ] AC11: tracer.Enter/Exit in all functions
-- [ ] AC12: Static errors are defined
-- [ ] AC13: Errors are wrapped with context
+- [ ] AC6: Проверка существования директории
+- [ ] AC7: Вызов GoAnalyzer.Analyze()
+- [ ] AC8: Вывод статистики по entity типам
+- [ ] AC9: Сохранение в YAML с отступом 2
+- [ ] AC10: Сообщение об успешном сохранении
+- [ ] AC11: tracer.Enter/Exit во всех функциях
+- [ ] AC12: Статические ошибки определены
+- [ ] AC13: Ошибки оборачиваются с контекстом
 
 ---
 
@@ -322,6 +322,6 @@ links:
 ```
 
 ### File Handling
-- Use yaml.NewEncoder with SetIndent(2)
-- Close file and encoder in defer
-- Log close errors
+- Использовать yaml.NewEncoder с SetIndent(2)
+- Закрывать file и encoder в defer
+- Логировать ошибки закрытия
