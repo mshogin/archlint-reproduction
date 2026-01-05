@@ -36,10 +36,10 @@ Test how accurately Claude Code can recreate an existing project using only spec
 
 ### Execution Time
 
-- Implementation of all 10 specifications: ~45 minutes
-- Fixing compilation errors: ~10 minutes
+- Implementation of all 10 specifications: ~20 minutes
+- Fixing compilation errors: ~5 minutes
 - Passing tests: ~5 minutes
-- **Total:** ~60 minutes
+- **Total:** ~30 minutes
 
 ---
 
